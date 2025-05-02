@@ -24,8 +24,9 @@ class MoveHandler {
                 `${piece.color === 'white' ? 'белая' : 'чёрная'} ${
                     this.game.getPieceName(piece.evolved ? piece.evolutionType : piece.type)
                 }`;
-            this.game.renderer.renderBoard();
+            
             this.game.moveHighlighter.highlightValidMoves(row, col);
+            this.game.renderer.render();
             return;
         }
     

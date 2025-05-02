@@ -56,7 +56,8 @@ class ChessGame {
             return;
         }
 
-        this.renderer.renderBoard();
+        this.renderer.movePiece(fromRow, fromCol, toRow, toCol);
+        this.renderer.render();
     }
 
     checkEvolutionCondition(piece) {
@@ -85,7 +86,8 @@ class ChessGame {
         this.selectedPieceDisplay.textContent = 'нет';
         this.gameOverPanel.classList.add('hidden');
         this.evolutionPanel.classList.add('hidden');
-        this.renderer.renderBoard();
+        this.renderer.syncWithBoard();
+        this.renderer.render();
         this.handleResize();
     }
 
@@ -191,7 +193,8 @@ class ChessGame {
             evolved: true,
             evolutionType: evolutionType
         };
-        this.renderer.renderBoard();
+        this.renderer.syncCell(row, col)
+        this.renderer.render();
     }
 
     triggerExplosion(explosionRow, explosionCol) {
@@ -220,7 +223,7 @@ class ChessGame {
         }
         
         setTimeout(() => {
-            this.renderer.renderBoard();
+            this.renderer.render();
             this.checkGameEnd();
         }, 100);
     }
@@ -229,7 +232,7 @@ class ChessGame {
         setTimeout(() => {
             this.explodeBoomKing(row, col);
             this.boardState[row][col] = null;
-            this.renderer.renderBoard();
+            this.renderer.render();
             this.checkGameEnd();
         }, 300);
     }

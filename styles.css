@@ -66,6 +66,9 @@ body {
     background-repeat: no-repeat;
     background-position: center;
     z-index: 10;
+    display: block;
+    position: absolute;
+    transition: all 0.3s ease-in-out;
 }
 
 #game-info {
